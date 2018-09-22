@@ -15,7 +15,7 @@
 </head>
 <body>
 	<nav class="navbar fixed-top bg-info">
-		<a href="/posts">Laravel Video Tutorial</a>
+		<a href="/posts">Ledevpole Ajax Scrud</a>
 		@yield('nav')
 	</nav>
 
