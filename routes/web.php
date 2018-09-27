@@ -13,15 +13,19 @@
 
 
 
+Route::get('/', function () {
+	    return view('welcome');
+	});
+
+Route::get('/landing', function () {
+	    return view('landing');
+	});
 
 
 Auth::routes();
 
 Route::group(['middleware' => ['web', 'auth']], function() {
-	Route::get('/', function () {
-	    return view('welcome');
 	
-});
 
 	Route::get('/home',function() {
 		if (Auth::user()->admin == 0) {
@@ -43,3 +47,4 @@ Route::get('show/{id}','PostController@show');
 Route::delete('delete/{id}', 'PostController@destroy');
 });
 		
+Route::resource('messages','MessageController');
