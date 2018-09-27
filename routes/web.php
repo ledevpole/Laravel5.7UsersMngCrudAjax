@@ -26,6 +26,7 @@ Auth::routes();
 
 Route::group(['middleware' => ['web', 'auth']], function() {
 	
+Route::resource('messages','MessageController');
 
 	Route::get('/home',function() {
 		if (Auth::user()->admin == 0) {
@@ -47,4 +48,5 @@ Route::get('show/{id}','PostController@show');
 Route::delete('delete/{id}', 'PostController@destroy');
 });
 		
-Route::resource('messages','MessageController');
+Route::get('messages/create','MessageController@create');
+Route::post('messages','MessageController@store');
