@@ -26,10 +26,11 @@ Auth::routes();
 
 Route::group(['middleware' => ['web', 'auth']], function() {
 	
-Route::resource('messages','MessageController');
+	
+	//Route::resource('messages','MessageController');
 
 	Route::get('/home',function() {
-		if (Auth::user()->admin == 0) {
+		if (Auth::user()->admin !== 1) {
 			return view('home');
 
 		}
@@ -47,6 +48,15 @@ Route::match(['get','put'], 'update/{id}', 'PostController@update');
 Route::get('show/{id}','PostController@show');
 Route::delete('delete/{id}', 'PostController@destroy');
 });
-		
+
+Route::group(['prefix' => 'messages','middleware' => ['web', 'auth']], function() {
+Route::get('/', 'MessageController@index');
+Route::put('/{id}', 'MessageController@update');
+Route::get('/{id}/edit','MessageController@show');
+Route::delete('/{id}', 'MessageController@destroy');
+});
+
+	
+//making available theses routes for guests without accompte		
 Route::get('messages/create','MessageController@create');
 Route::post('messages','MessageController@store');

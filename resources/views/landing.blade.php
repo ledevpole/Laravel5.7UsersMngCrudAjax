@@ -1,7 +1,9 @@
-<link rel="stylesheet" type="text/css" href="{{ asset('/css/app.css ') }}">
- <link rel="stylesheet" type="text/css" href="{{ asset('/css/all.css ') }}">
+@extends('layouts.app')
+@section('content')
 
-<body id="page-top">
+
+
+
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
       <a class="navbar-brand js-scroll-trigger" href="#page-top">
@@ -76,6 +78,7 @@
                 </span>
               </a>
             </li>
+
             <li class="list-inline-item">
               <a href="https://github.com/ledevpole" target="_blank">
                 <span class="fa-stack fa-lg">
@@ -87,7 +90,6 @@
           </ul>
         </div>
       </section>
-
       <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="experience">
         <div class="my-auto">
           <h2 class="mb-5">Experience</h2>
@@ -278,16 +280,4 @@
     </div>
 
 
-<script type="text/javascript" src="{{ asset('/js/app.js') }}"></script> 
-<!-- <script type="text/javascript" src="{{ asset('/js/all.js') }}"></script> -->
-    <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Plugin JavaScript -->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for this template -->
-    <script src="js/resume.min.js"></script>
-
-  </body>
+  @endsection

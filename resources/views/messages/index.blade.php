@@ -12,8 +12,8 @@
 	@foreach ($messages as $m) 
 	    {{ $m->id }}
 	    {{ $m->content}} 
-	    <a href="{{ url('messages/'.$m->id)  }}" class="btn btn btn-info">Show</a>
-	    <a href="{{ url('messages/'.$m->id.'/edit')  }}" class="btn btn btn-warning">Edit</a>
+	    <a href="{{ url('messages/'.$m->id)  }}" class="btn btn btn-info">Voir</a>
+	    <a href="{{ url('messages/'.$m->id.'/edit')  }}" class="btn btn btn-warning">Editer</a>
 	    <br>
 	@endforeach
 @endsection

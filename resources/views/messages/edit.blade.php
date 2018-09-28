@@ -19,13 +19,14 @@
   <div class="form-group row">
     <label class="col-4"></label> 
     <div class="col-4">
-      <input type="textarea"  id="content" name="content" value="{{ $message->content }}" class="form-control" required="required" >
+      <textarea type="text"  id="content" name="content"  class="form-control form-control-lg" rows="8" required="required" >{{ $message->content }}</textarea>
       <span  class="form-text text-muted">modifier le message?</span>
     </div>
   </div> 
   <div class="form-group row">
     <div class="offset-4 col-4">
-      <button name="submit" type="submit" class="btn btn-primary"> Modifier!</button>
+      <button name="submit" type="submit" class="btn btn-warning"> Modifier!</button>
+      <a href="{{ url('messages')  }}" class="btn btn btn-primary">Retour</a>
     </div>
   </div>
 </form>

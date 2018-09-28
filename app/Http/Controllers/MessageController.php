@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Message;
 
+
 class MessageController extends Controller
 {
     /**
@@ -12,17 +13,16 @@ class MessageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if ( $request->user()->admin === 1) {
+            $messages = new Message();
+            $messages = $messages->all();    
+            return view('messages.index',compact('messages'));
+        }  
 
-       // $message = new Message();
-       // $message->content = 'je suis un nouveau message';
-       //$message->save();
-
-
-        $messages = new Message();
-        $messages = $messages->all();    
-        return view('messages.index',compact('messages'));
+        return view('/landing');      
+            
     }
 
     /**
@@ -58,8 +58,11 @@ class MessageController extends Controller
      */
     public function show($id)
     {
-        $message = Message::find($id);
-        return view('messages/show',compact('message'));
+        if ( $request->user()->admin === 1) {
+            $message = Message::find($id);
+            return view('messages/show',compact('message'));
+        }
+        return view('/landing');   
     }
 
     /**
@@ -70,8 +73,11 @@ class MessageController extends Controller
      */
     public function edit($id)
     {
-        $message = Message::find($id);
-        return view('messages/edit',compact('message','id'));
+        if ( $request->user()->admin === 1) {
+            $message = Message::find($id);
+            return view('messages/edit',compact('message','id'));
+        }
+        return view('/landing');   
     }
 
     /**
@@ -83,11 +89,14 @@ class MessageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $message = Message::find($id);
-        $message->content = $request->content;
-        $message->save();
+        if ( $request->user()->admin === 1) {
+            $message = Message::find($id);
+            $message->content = $request->content;
+            $message->save();
 
-        return redirect('messages')->with('success','Information has been updated');
+            return redirect('messages')->with('success','Information has been updated');
+        }
+        return view('/landing');
     }
 
     /**
@@ -98,8 +107,11 @@ class MessageController extends Controller
      */
     public function destroy($id)
     {
-        $message = Message::find($id);
-        $message->delete();
-        return redirect('messages')->with('success','Information has been  deleted');
+        if ( $request->user()->admin === 1) {
+            $message = Message::find($id);
+            $message->delete();
+            return redirect('messages')->with('success','Information has been  deleted');
+        }
+        return view('/landing');
     }
 }
