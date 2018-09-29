@@ -60,3 +60,6 @@ Route::delete('/{id}', 'MessageController@destroy');
 //making available theses routes for guests without accompte		
 Route::get('messages/create','MessageController@create');
 Route::post('messages','MessageController@store');
+
+Route::get('/articleHome','ArticleController@home');
+Route::resource('/articles','ArticleController');

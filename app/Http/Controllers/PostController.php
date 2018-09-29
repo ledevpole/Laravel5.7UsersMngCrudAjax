@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use App\Comment;
 use Illuminate\Support\Façade\Validator;
 
 
@@ -16,6 +17,11 @@ class PostController extends Controller
      */
     public function index(Request $request)
     {
+        $comment = new Comment;
+        $comment->content  = 'je suis un commentaire XD';
+        $comment->post_id = 23;
+        $comment->save(); 
+
         $request->session()->put('search',$request
             ->has('search') ? $request->get('search') : ($request->session()
             ->has('search') ? $request->session()->get('search') : ''));
@@ -31,15 +37,18 @@ class PostController extends Controller
 
 
         $posts = new Post();
+        
+        $comments = $posts->comments->all();
+
         $posts = $posts->where('title','like','%'.$request->session()->get('search') . '%')
             ->orderBy($request->session()->get('field'), $request->session()->get('sort'))
             ->paginate(5);
 
         if ($request->ajax()) {
-            return view('posts.index',compact('posts'));
+            return view('posts.index',compact('posts','comments'));
         } 
         else {
-            return view('posts.ajax', compact('posts'));
+            return view('posts.ajax', compact('posts','comments'));
         }
 
     }

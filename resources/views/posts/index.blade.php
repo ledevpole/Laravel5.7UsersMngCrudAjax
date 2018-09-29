@@ -48,10 +48,16 @@
 			@foreach ($posts as $key => $value)
 				<tr>
 					<td>{{ $i++}}</td>
-					<td>{{ $value->title}}</td>
+					<td>{{ $value->title}} {{ $value->id}} </td>
 					<td>{{ $value->description}}</td>
 					<td>{{ $value->created_at}}</td>
 					<td>{{ $value->updated_at}}</td>
+					<td>@foreach( $value->comments as $com )
+
+						<p>{{$com->content}}</p>
+
+						@endforeach
+					</td>
 					<td>
 						<a href="javascript:ajaxLoad(' {{ url('posts/show/'.$value->id ) }} ')" class="btn btn btn-info">Show</a>
 						<a href="javascript:ajaxLoad(' {{ url('posts/update/'.$value->id ) }} ')" class="btn btn btn-warning">Edit</a>
