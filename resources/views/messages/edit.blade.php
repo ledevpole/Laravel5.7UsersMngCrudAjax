@@ -7,12 +7,8 @@
       </div><br />
   @endif
 
-
-
-  
-
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<form method="post" action="{{action('MessageController@update', $id)}}">
+<form method="POST" action="{{action('MessageController@update', $id)}}">
    @csrf
   <input name="_method" type="hidden" value="PATCH">
   

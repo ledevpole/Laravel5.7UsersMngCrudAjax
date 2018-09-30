@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Message;
 
-
 class MessageController extends Controller
 {
     /**
@@ -32,6 +31,7 @@ class MessageController extends Controller
      */
     public function create()
     {
+
         return view('messages.form');
     }
 
@@ -56,7 +56,7 @@ class MessageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
         if ( $request->user()->admin === 1) {
             $message = Message::find($id);
@@ -71,7 +71,7 @@ class MessageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
         if ( $request->user()->admin === 1) {
             $message = Message::find($id);
@@ -105,7 +105,7 @@ class MessageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
         if ( $request->user()->admin === 1) {
             $message = Message::find($id);

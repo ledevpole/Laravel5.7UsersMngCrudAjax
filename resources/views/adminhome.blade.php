@@ -14,8 +14,12 @@
                         </div>
                     @endif
 
-                    <div class="alert alert-success">
+                    <div class="alert alert-success alert-dismissible fade show">
                         <p>You are logged as ADMIN</p>    
+
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                 <span aria-hidden="true">&times;</span>
+                            </button>
                     </div>
                     
                     <table class="table table-hover table-bordered">

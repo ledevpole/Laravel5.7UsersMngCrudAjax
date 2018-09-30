@@ -27,7 +27,7 @@ Auth::routes();
 Route::group(['middleware' => ['web', 'auth']], function() {
 	
 	
-	//Route::resource('messages','MessageController');
+	Route::resource('messages','MessageController');
 
 	Route::get('/home',function() {
 		if (Auth::user()->admin !== 1) {
@@ -38,28 +38,12 @@ Route::group(['middleware' => ['web', 'auth']], function() {
 			$users['users'] = \App\User::all();
 			return view('adminhome',$users);
 		}	
-	});
+	})->name('home');
 });
-
-Route::group(['prefix' => 'posts','middleware' => ['web', 'auth']], function() {
-Route::get('/', 'PostController@index');
-Route::match(['get','post'], 'create', 'PostController@create');
-Route::match(['get','put'], 'update/{id}', 'PostController@update');
-Route::get('show/{id}','PostController@show');
-Route::delete('delete/{id}', 'PostController@destroy');
-});
-
-Route::group(['prefix' => 'messages','middleware' => ['web', 'auth']], function() {
-Route::get('/', 'MessageController@index');
-Route::put('/{id}', 'MessageController@update');
-Route::get('/{id}/edit','MessageController@show');
-Route::delete('/{id}', 'MessageController@destroy');
-});
-
 	
 //making available theses routes for guests without accompte		
-Route::get('messages/create','MessageController@create');
+Route::get('messages/create','MessageController@create')->name('messages.create');
 Route::post('messages','MessageController@store');
 
-Route::get('/articleHome','ArticleController@home');
+Route::get('/articleHome','ArticleController@home')->name('articles.home');
 Route::resource('/articles','ArticleController');
