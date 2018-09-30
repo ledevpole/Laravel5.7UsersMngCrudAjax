@@ -8,13 +8,13 @@ class Comment extends Model
 {
     
 	protected $fillable = [
-    	'content','post_id'
+    	'content','article_id'
     ];
     /**
      * Get the post that owns the comment.
      */
-    public function post()
+    public function article()
     {
-        return $this->belongsTo('App\Post');
+        return $this->belongsTo('App\Article');
     }
 }
