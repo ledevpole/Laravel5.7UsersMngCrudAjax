@@ -16,4 +16,12 @@ class Article extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    /**
+     * Get the comments for the blog article.
+     */
+    public function comments()
+    {
+        return $this->hasMany('App\Comment');
+    }
 }
