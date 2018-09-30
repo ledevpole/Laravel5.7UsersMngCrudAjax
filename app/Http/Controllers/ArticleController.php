@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Article;
 
 class ArticleController extends Controller
@@ -20,8 +21,21 @@ class ArticleController extends Controller
 
     public function index()
     { 
+        $articles  = DB::table('articles')
+            ->select(
+                'articles.id',
+                'articles.title',
+                'articles.body',
+                'users.name'   
+            )
+            ->join(
+                'users',
+                'users.id','=','articles.user_id'
+            )
+            ->orderBy('id','DESC')
+            ->get();
 
-        return Article::orderBy('id','DESC')->get();
+        return $articles; 
     }
 
     /**
@@ -75,7 +89,7 @@ class ArticleController extends Controller
      */
     public function edit($id)
     {
-        //
+        return Article::find($id);
     }
 
     /**
@@ -87,7 +101,25 @@ class ArticleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required',
+            'body' => 'required',
+        ]);
+
+        $update = Article::find($id);
+        if ($update->count()) {
+            $update->update([
+
+            'title' => $request->get('title'),
+            'body'  => $request->get('body'),
+            'user_id' => $request->user()->id
+            ]);
+
+            return response()->json(['status' => 'success','msg' => 'Article updated successfully']);
+        }else {
+            return response()->json(['status' => 'error','msg' => 'Error in updating Article']);
+        }
+        
     }
 
     /**
@@ -98,6 +130,7 @@ class ArticleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Article::destroy($id);
+        return response()->json(['status' => 'success','msg' => 'Article erased successfully']);
     }
 }

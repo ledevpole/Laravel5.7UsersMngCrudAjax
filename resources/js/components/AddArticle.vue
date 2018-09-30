@@ -1,4 +1,4 @@
-<template id="add-post">
+<template id="add-article">
 	<div>
 		<h3> Add a new Article </h3>
 		<form v-on:submit.prevent = "createArticle">

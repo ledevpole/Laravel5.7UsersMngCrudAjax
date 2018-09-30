@@ -13994,7 +13994,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(14);
-module.exports = __webpack_require__(56);
+module.exports = __webpack_require__(60);
 
 
 /***/ }),
@@ -14026,9 +14026,9 @@ var AddArticle = Vue.component('AddArticle', __webpack_require__(48));
 
 var EditArticle = Vue.component('EditArticle', __webpack_require__(51));
 
-var DeleteArticle = Vue.component('DeleteArticle', __webpack_require__(52));
+var DeleteArticle = Vue.component('DeleteArticle', __webpack_require__(54));
 
-var ViewArticle = Vue.component('ViewArticle', __webpack_require__(53));
+var ViewArticle = Vue.component('ViewArticle', __webpack_require__(57));
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -50148,6 +50148,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -50189,7 +50191,7 @@ var render = function() {
             staticClass: "btn btn-xs btn-primary",
             attrs: { to: { path: "/add-article" } }
           },
-          [_vm._v("\n            Add new Post\n        ")]
+          [_vm._v("\n            Add new Article\n        ")]
         )
       ],
       1
@@ -50207,6 +50209,8 @@ var render = function() {
             _c("td", [_vm._v(" " + _vm._s(article.title))]),
             _vm._v(" "),
             _c("td", [_vm._v(" " + _vm._s(article.body))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(" " + _vm._s(article.name))]),
             _vm._v(" "),
             _c(
               "td",
@@ -50264,6 +50268,8 @@ var staticRenderFns = [
         _c("th", [_vm._v(" Article Title ")]),
         _vm._v(" "),
         _c("th", { staticClass: "col-md-6" }, [_vm._v(" Article Body ")]),
+        _vm._v(" "),
+        _c("th", [_vm._v(" Author ")]),
         _vm._v(" "),
         _c("th", { staticClass: "col-md-3" }, [_vm._v(" Actions ")])
       ])
@@ -50486,11 +50492,12 @@ if (false) {
 /* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
+var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = null
+var __vue_script__ = __webpack_require__(52)
 /* template */
-var __vue_template__ = null
+var __vue_template__ = __webpack_require__(53)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -50509,18 +50516,199 @@ var Component = normalizeComponent(
 )
 Component.options.__file = "resources/js/components/EditArticle.vue"
 
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-7d3a4c71", Component.options)
+  } else {
+    hotAPI.reload("data-v-7d3a4c71", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
 module.exports = Component.exports
 
 
 /***/ }),
 /* 52 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	data: function data() {
+		return { article: { title: '', body: '' } };
+	},
+	created: function created() {
+		var _this = this;
+
+		var uri = 'http://blog/articles/' + this.$route.params.id + '/edit';
+		Axios.get(uri).then(function (response) {
+			_this.article = response.data;
+		});
+	},
+	methods: {
+		updateArticle: function updateArticle() {
+			var _this2 = this;
+
+			var uri = 'http://blog/articles/' + this.$route.params.id;
+			Axios.patch(uri, this.article).then(function (response) {
+				_this2.$router.push({ name: 'ListArticles' });
+			}).catch(function (error) {
+				console.log(error.response);
+			});
+		}
+	}
+});
+
+/***/ }),
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("h3", [_vm._v(" Edit an Article ")]),
+    _vm._v(" "),
+    _c(
+      "form",
+      {
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            return _vm.updateArticle($event)
+          }
+        }
+      },
+      [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "edit-title" } }, [_vm._v("Title")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.article.title,
+                expression: "article.title"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { id: "edit-title", required: "" },
+            domProps: { value: _vm.article.title },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.article, "title", $event.target.value)
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "edit-body" } }, [_vm._v("Body")]),
+          _vm._v(" "),
+          _c("textarea", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.article.body,
+                expression: "article.body"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { id: "edit-body", row: "10", required: "" },
+            domProps: { value: _vm.article.body },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.article, "body", $event.target.value)
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c(
+          "button",
+          { staticClass: "btn btn-xs btn-primary", attrs: { type: "submit" } },
+          [_vm._v("Update Article")]
+        ),
+        _vm._v(" "),
+        _c(
+          "router-link",
+          {
+            staticClass: "btn btn-xs btn-warning",
+            attrs: { to: "/articleHome" }
+          },
+          [_vm._v("Cancel")]
+        )
+      ],
+      1
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-7d3a4c71", module.exports)
+  }
+}
+
+/***/ }),
+/* 54 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = null
+var __vue_script__ = __webpack_require__(55)
 /* template */
-var __vue_template__ = null
+var __vue_template__ = __webpack_require__(56)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -50539,19 +50727,137 @@ var Component = normalizeComponent(
 )
 Component.options.__file = "resources/js/components/DeleteArticle.vue"
 
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2746f6f0", Component.options)
+  } else {
+    hotAPI.reload("data-v-2746f6f0", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
 module.exports = Component.exports
 
 
 /***/ }),
-/* 53 */
+/* 55 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	data: function data() {
+		return { article: { title: '', body: '' } };
+	},
+	created: function created() {
+		var _this = this;
+
+		var uri = 'http://blog/articles/' + this.$route.params.id;
+		Axios.get(uri).then(function (response) {
+			_this.article = response.data;
+		});
+	},
+	methods: {
+		deleteArticle: function deleteArticle() {
+			var _this2 = this;
+
+			var uri = 'http://blog/articles/' + this.$route.params.id;
+			Axios.delete(uri, this.article).then(function (response) {
+				_this2.$router.push({ name: 'ListArticles' });
+			}).catch(function (error) {
+				console.log(error.response);
+			});
+		}
+	}
+});
+
+/***/ }),
+/* 56 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("h3", [_vm._v(" Delete Article " + _vm._s(_vm.article.title) + " ")]),
+    _vm._v(" "),
+    _c(
+      "form",
+      {
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            return _vm.deleteArticle($event)
+          }
+        }
+      },
+      [
+        _c("p", [_vm._v(" The action cannot be undone ")]),
+        _vm._v(" "),
+        _c(
+          "button",
+          { staticClass: "btn btn-xs btn-danger", attrs: { type: "submit" } },
+          [_vm._v("Delete Article")]
+        ),
+        _vm._v(" "),
+        _c(
+          "router-link",
+          {
+            staticClass: "btn btn-xs btn-warning",
+            attrs: { to: "/articleHome" }
+          },
+          [_vm._v("Cancel")]
+        )
+      ],
+      1
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-2746f6f0", module.exports)
+  }
+}
+
+/***/ }),
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(54)
+var __vue_script__ = __webpack_require__(58)
 /* template */
-var __vue_template__ = __webpack_require__(55)
+var __vue_template__ = __webpack_require__(59)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -50590,7 +50896,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 54 */
+/* 58 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -50623,7 +50929,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 55 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -50662,7 +50968,7 @@ if (false) {
 }
 
 /***/ }),
-/* 56 */
+/* 60 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
