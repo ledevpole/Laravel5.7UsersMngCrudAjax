@@ -12,7 +12,8 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-    	if(! DB::table('users')->where('email', '=' ,'admin@ledevpole.com')->get())
+    	$user = DB::table('users')->where('email', '=' ,'admin@ledevpole.com')->get();
+    	if(!$user->contains('admin', 1))
     	{
     		DB::table('users')->insert([
             'name' => 'Admin',
