@@ -29,8 +29,13 @@ class MessageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
+        if ( isset($request->user()->admin) && $request->user()->admin === 1) {
+
+            $admin = true;
+            return view('messages.form',compact('admin'));
+        }
 
         return view('messages.form');
     }
@@ -47,7 +52,7 @@ class MessageController extends Controller
         $message->content = $request->content;
         $message->save();
         
-        return redirect('messages/create')->with('success', 'Information has been added');
+        return redirect('messages/create')->with('success', 'Le message a bien été envoyé!');
     }
 
     /**
@@ -94,7 +99,7 @@ class MessageController extends Controller
             $message->content = $request->content;
             $message->save();
 
-            return redirect('messages')->with('success','Information has been updated');
+            return redirect('messages')->with('success','Le message a bien été modifié!');
         }
         return view('/landing');
     }
@@ -110,7 +115,7 @@ class MessageController extends Controller
         if ( $request->user()->admin === 1) {
             $message = Message::find($id);
             $message->delete();
-            return redirect('messages')->with('success','Information has been  deleted');
+            return redirect('messages')->with('success','Le message a bien été effacé!');
         }
         return view('/landing');
     }
