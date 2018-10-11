@@ -19,9 +19,8 @@
 				<table class="table table-bordered">
 		            <thead>
 		                <tr>
-		                    <th> # </th>
+		                    <th class="col-md-1"> # </th>
 		                    <th class="col-md-6"> Message </th>
-		                    <th> Author </th>
 		                    <th class="col-md-3"> Actions </th>
 		                </tr>
 		            </thead>
@@ -30,7 +29,6 @@
 		                <tr>
 		                    <td>{{ $m->id }}</td>
 		                    <td>{{ $m->content}}</td>
-		                    <td>{{ $m->user_id}}</td>
 		                    <td> 
 		                    <a href="{{ url('messages/'.$m->id.'/edit')  }}" class="btn btn btn-info">Voir</a>
 						    <a href="{{ url('messages/'.$m->id)  }}" class="btn btn btn-warning">Editer</a>

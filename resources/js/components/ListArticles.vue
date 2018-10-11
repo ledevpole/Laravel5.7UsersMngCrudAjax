@@ -9,7 +9,7 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th> # </th>
+                    <thclass="col-md-1"> # </th>
                     <th> Article Title </th>
                     <th class="col-md-6"> Article Body </th>
                     <th> Author </th>
