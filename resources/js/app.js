@@ -17,6 +17,8 @@ window.Axios = require('axios').default;
 
 
 
+
+
 let AppLayout = require('./components/AppComponent.vue');
 
 const ListArticles = Vue.component('ListArticles',require('./components/ListArticles.vue'));
@@ -28,6 +30,8 @@ const EditArticle = Vue.component('EditArticle',require('./components/EditArticl
 const DeleteArticle = Vue.component('DeleteArticle',require('./components/DeleteArticle.vue'));
 
 const ViewArticle = Vue.component('ViewArticle',require('./components/ViewArticle.vue'));
+
+const Landing = Vue.component('Landing',require('./components/Landing.vue'));
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -37,6 +41,17 @@ const ViewArticle = Vue.component('ViewArticle',require('./components/ViewArticl
  //registering modules
 
  Vue.use(VueRouter,VueAxios,axios);
+
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fas } from '@fortawesome/free-solid-svg-icons'
+import { fab } from '@fortawesome/free-brands-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+library.add(fab, fas)
+
+Vue.component('font-awesome-icon', FontAwesomeIcon)
+
+Vue.config.productionTip = false
 
 
 const routes = [
@@ -64,6 +79,11 @@ const routes = [
 	name: 'ViewArticle',
 	path: '/view/:id',
 	component: ViewArticle
+},
+{
+	name: 'Landing',
+	path: '/',
+	component: Landing
 }
 ];
 
@@ -73,4 +93,5 @@ const routes = [
  	{ router },
  	AppLayout
  	)
- ).$mount('#articles');
+ ).$mount('#vm');
+

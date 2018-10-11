@@ -1,7 +1,9 @@
 @extends('layouts.app')
+
+
 @section('content')
 
-<div id="articles"></div>
+<div id="vm"></div>
 
 
 

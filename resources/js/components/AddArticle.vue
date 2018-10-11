@@ -17,7 +17,7 @@
 			</div>
 
 
-		<button type="submit" class="btn btn-xs btn-primary">Create Article</button>
+		<button type="submit" class="btn btn-xs btn-primary">Create Article <font-awesome-icon icon="coffee" /></button>
 
 		<router-link class="btn btn-xs btn-warning" v-bind:to="'/articleHome'">Cancel</router-link>
 
