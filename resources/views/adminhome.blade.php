@@ -13,7 +13,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
+                    
                     <div class="alert alert-success alert-dismissible fade show">
                         <p>You are logged as ADMIN</p>    
 

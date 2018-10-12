@@ -2,14 +2,14 @@
     <div class="row">
         <div class="ml-auto">
             <router-link class="btn btn-xs btn-primary" v-bind:to="{path: '/add-article'}">
-                Add new Article
+             <font-awesome-icon :icon="[ 'fas', 'plus' ]" />   Add new Article
             </router-link>
         </div>
 
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <thclass="col-md-1"> # </th>
+                    <th class="col-md-1"> # </th>
                     <th> Article Title </th>
                     <th class="col-md-6"> Article Body </th>
                     <th> Author </th>
@@ -23,9 +23,15 @@
                     <td> {{ article.body }}</td>
                     <td> {{ article.name }}</td>
                     <td> 
-                    <router-link class="btn btn-xs btn-info" v-bind:to="{name: 'ViewArticle', params: { id:  article.id }}">Show</router-link>
-                    <router-link class="btn btn-xs btn-warning" v-bind:to="{name: 'EditArticle', params: { id:  article.id }}">Edit</router-link>
-                    <router-link class="btn btn-xs btn-danger" v-bind:to="{name: 'DeleteArticle', params: { id:  article.id }}">Delete</router-link>
+                    <router-link class="btn btn-xs btn-info" v-bind:to="{name: 'ViewArticle', params: { id:  article.id }}">Show 
+                        <font-awesome-icon :icon="[ 'fas', 'eye' ]" />
+                    </router-link>
+                    <router-link class="btn btn-xs btn-warning" v-bind:to="{name: 'EditArticle', params: { id:  article.id }}">Edit
+                        <font-awesome-icon :icon="[ 'fas', 'pen' ]" />  
+                    </router-link>
+                    <router-link class="btn btn-xs btn-danger" v-bind:to="{name: 'DeleteArticle', params: { id:  article.id }}">Delete 
+                        <font-awesome-icon :icon="[ 'fas', 'times' ]" />
+                    </router-link>
                     </td>
                 </tr>
             </tbody>

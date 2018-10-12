@@ -52124,6 +52124,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -52165,7 +52171,11 @@ var render = function() {
             staticClass: "btn btn-xs btn-primary",
             attrs: { to: { path: "/add-article" } }
           },
-          [_vm._v("\n            Add new Article\n        ")]
+          [
+            _c("font-awesome-icon", { attrs: { icon: ["fas", "plus"] } }),
+            _vm._v("   Add new Article\n        ")
+          ],
+          1
         )
       ],
       1
@@ -52197,7 +52207,11 @@ var render = function() {
                       to: { name: "ViewArticle", params: { id: article.id } }
                     }
                   },
-                  [_vm._v("Show")]
+                  [
+                    _vm._v("Show \n                    "),
+                    _c("font-awesome-icon", { attrs: { icon: ["fas", "eye"] } })
+                  ],
+                  1
                 ),
                 _vm._v(" "),
                 _c(
@@ -52208,7 +52222,11 @@ var render = function() {
                       to: { name: "EditArticle", params: { id: article.id } }
                     }
                   },
-                  [_vm._v("Edit")]
+                  [
+                    _vm._v("Edit\n                    "),
+                    _c("font-awesome-icon", { attrs: { icon: ["fas", "pen"] } })
+                  ],
+                  1
                 ),
                 _vm._v(" "),
                 _c(
@@ -52219,7 +52237,13 @@ var render = function() {
                       to: { name: "DeleteArticle", params: { id: article.id } }
                     }
                   },
-                  [_vm._v("Delete")]
+                  [
+                    _vm._v("Delete \n                    "),
+                    _c("font-awesome-icon", {
+                      attrs: { icon: ["fas", "times"] }
+                    })
+                  ],
+                  1
                 )
               ],
               1
@@ -52237,7 +52261,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
-        _c("th", [_vm._v(" # ")]),
+        _c("th", { staticClass: "col-md-1" }, [_vm._v(" # ")]),
         _vm._v(" "),
         _c("th", [_vm._v(" Article Title ")]),
         _vm._v(" "),
