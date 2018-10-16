@@ -89,10 +89,9 @@
             <div class="resume-content mr-auto">
               <h3 class="mb-0">ICFA</h3>
               <div class="subheading mb-3">BREVET PROFESSIONNEL RESTAURANT</div>
-              <p>GPA: 3.56</p>
             </div>
             <div class="resume-date text-md-right">
-              <span class="text-primary">Juillet 2009 - Octobre 2011</span>
+              <span class="text-primary">2009 - 2011</span>
             </div>
           </div>
 
@@ -100,10 +99,9 @@
             <div class="resume-content mr-auto">
               <h3 class="mb-0">ICFA</h3>
               <div class="subheading mb-3">CAP RESTAURANT</div>
-              <p>GPA: 3.56</p>
             </div>
             <div class="resume-date text-md-right">
-              <span class="text-primary">Juillet 2007 - Juin 2009</span>
+              <span class="text-primary">2007 - 2009</span>
             </div>
           </div>
  
