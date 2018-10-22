@@ -25,7 +25,7 @@ Route::group(['middleware' => ['web', 'auth']], function() {
 	Route::resource('messages','MessageController');
 
 	Route::get('/home','UserController@index')->name('home');
-	Route::resource('/admin/user','UserController');
+	Route::resource('/admin/users','UserController');
 
 
 	Route::get('/articleHome','ArticleController@home')->name('articles.home');

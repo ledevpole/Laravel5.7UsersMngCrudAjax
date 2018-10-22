@@ -22,6 +22,8 @@
                             </button>
                     </div>
                     
+                    <a href="{{ url('admin/users/create')  }}" class="btn btn btn-primary">Créer un nouvel utilisateur</a>
+
                     <table class="table table-hover table-bordered">
                         <thead>
                             <tr>

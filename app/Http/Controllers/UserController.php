@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use App\User;
 
 class UserController extends Controller
@@ -24,6 +26,9 @@ class UserController extends Controller
 
             case 1:
                 $users['users'] = \App\User::all();
+                if ($request->user()->isGodBlessed) {
+                    return view('users.godlook',$users);
+                }
             return view('adminhome',$users);
                 break;
 
@@ -39,10 +44,10 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-           $users['users'] = \App\User::all();
-            return view('users.godlook',$users);
+    public function create(Request $request)
+    {  if ($request->user()->isGodBlessed) {
+           return view('users.create');
+       }return redirect('home');
     }
 
     /**
@@ -53,7 +58,22 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       if ($request->user()->isGodBlessed) {
+
+            if ((int) $request['isGodBlessed']) {
+                $request['admin'] = 1;
+            }
+
+            User::create([
+                'name' => $request['name'],
+                'email' => $request['email'],
+                'password' => Hash::make($request['password']),
+                'admin' => (int) $request['admin'],
+                'isGodBlessed' =>  (int) $request['isGodBlessed']
+            ]);
+
+        }
+        return redirect('home');
     }
 
     /**
