@@ -22,6 +22,18 @@ class UsersTableSeeder extends Seeder
             'admin' => 1
         	]);
     	}
+
+        $user = DB::table('users')->where('email', '=' ,'god@ledevpole.com')->get();
+        if(!$user->contains('isGodBlessed', 1))
+        {
+            DB::table('users')->insert([
+            'name' => 'GOD',
+            'email' => 'god@ledevpole.com',
+            'password' => bcrypt('secret'),
+            'admin' => 1,
+            'isGodBlessed' => 1
+            ]);
+        }
          	
         factory(App\User::class, 50)->create();
     }
