@@ -32,11 +32,17 @@
                         </thead>
                         <tbody>
                             @foreach($users as $key => $value)
+
+                            @if ($value->admin !== 1)
+                                        
+                                        
                             <tr>
                                 <td>{{$key +1}}</td>
                                 <td>{{$value->name}}</td>
                                 <td>{{$value->email}}</td>
                             </tr>
+
+                            @endif
                             @endforeach
                         </tbody>
                     </table>

@@ -12,7 +12,6 @@
 */
 
 
-
 Route::get('/', function () {
 	    return view('landing');
 	});
@@ -25,21 +24,16 @@ Route::group(['middleware' => ['web', 'auth']], function() {
 	
 	Route::resource('messages','MessageController');
 
-	Route::get('/home',function() {
-		if (Auth::user()->admin !== 1) {
-			return view('home');
+	Route::get('/home','UserController@index')->name('home');
+	Route::resource('/admin/users','UserController');
 
-		}
-		else{
-			$users['users'] = \App\User::all();
-			return view('adminhome',$users);
-		}	
-	})->name('home');
+
+	Route::get('/articleHome','ArticleController@home')->name('articles.home');
+	Route::resource('/articles','ArticleController');
+
 });
 	
-//making available theses routes for guests without accompte		
+//making available theses routes for guests without login		
 Route::get('messages/create','MessageController@create')->name('messages.create');
 Route::post('messages','MessageController@store');
 
-Route::get('/articleHome','ArticleController@home')->name('articles.home');
-Route::resource('/articles','ArticleController');

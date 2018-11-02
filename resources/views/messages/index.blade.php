@@ -30,8 +30,8 @@
 		                    <td>{{ $m->id }}</td>
 		                    <td>{{ $m->content}}</td>
 		                    <td> 
-		                    <a href="{{ url('messages/'.$m->id.'/edit')  }}" class="btn btn btn-info">Voir</a>
-						    <a href="{{ url('messages/'.$m->id)  }}" class="btn btn btn-warning">Editer</a>
+		                    <a href="{{ url('messages/'.$m->id.'/edit')  }}" class="btn btn btn-warning">Editer</a>
+						    <a href="{{ url('messages/'.$m->id)  }}" class="btn btn btn-danger">Supprimer</a>
 		                    </td>
 		                </tr>
 		                @endforeach
