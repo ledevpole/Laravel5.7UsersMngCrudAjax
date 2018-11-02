@@ -9,9 +9,22 @@
 
                 <div class="card-body">
                     @if (session('status'))
-                        <div class="alert alert-success" role="alert">
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
                             {{ session('status') }}
+
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
+                    @endif
+                    @if (\Session::has('success'))
+                      <div class="alert alert-success alert-dismissible fade show">
+                        <p>{{ \Session::get('success') }}</p>
+
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>                        
                     @endif
                     
                     <div class="alert alert-success alert-dismissible fade show">
@@ -48,9 +61,15 @@
                                     @endif
                                 </td>
                                  <td> 
-                                    <a href="{{ url('admin/users/'.$value->id.'/edit')  }}" class="btn btn btn-info">Voir</a>
-                                    <a href="{{ url('admin/users/'.$value->id)  }}" class="btn btn btn-warning">Editer</a>
-                                    <a href="{{ url('admin/users/'.$value->id)  }}" class="btn btn btn-danger">Supprimer</a>
+                                    <form method="post" class="form-inline" action="{{action('UserController@destroy', $value->id)}}">
+                                    <a href="{{ url('admin/users/'.$value->id)  }}" class="btn btn btn-info">Voir</a>
+                                    <a href="{{ url('admin/users/'.$value->id.'/edit')  }}" class="btn btn btn-warning">Editer</a>
+
+                                    
+                                       @csrf
+                                      <input name="_method" type="hidden" value="DELETE">
+                                    <button class="btn btn btn-danger">Supprimer</button> 
+                                    </form>
                                 </td>
                             </tr>
                             @endforeach

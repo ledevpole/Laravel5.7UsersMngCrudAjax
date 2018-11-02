@@ -29,7 +29,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * Get the comments for the blog post.
+     * Get the articles for the blog users.
      */
     public function articles()
     {

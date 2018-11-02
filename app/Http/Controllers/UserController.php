@@ -82,9 +82,15 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
-        //
+        if ($request->user()->isGodBlessed) {
+
+            $user['user'] = \App\User::where('id', $id)->get();
+
+        return view('users.show', $user);
+        }
+        return redirect('home');
     }
 
     /**
@@ -93,9 +99,14 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
-        //
+        if ($request->user()->isGodBlessed) {
+
+            $user = User::find($id);
+            return view('users.edit', compact('user','id'));
+        }
+        return redirect('home');
     }
 
     /**
@@ -107,7 +118,34 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if ($request->user()->isGodBlessed) {
+
+            $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255',
+            'password' => 'confirmed',
+            ]);
+
+            $user = User::find($id);
+
+            if ((int) $request['isGodBlessed']) {
+                $request['admin'] = 1;
+            }
+
+            $user->name = $request->name;
+            $user->email = $request->email;
+            if ($request->password != "") {
+                $user->password = Hash::make($request->password);
+            }
+            $user->admin = (int) $request->admin;
+            $user->isGodBlessed = (int) $request->isGodBlessed;
+            $user->save();
+
+            return redirect('home')->with('success','L\' utilisateur a bien été modifié!');
+
+            
+        }
+        return redirect('home');
     }
 
     /**
@@ -116,8 +154,15 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        if ($request->user()->isGodBlessed) {
+
+            $user = User::find($id);
+            $user->delete();
+
+            return redirect('home')->with('success','L\' utilisateur a bien été supprimé!');
+        }
+        return redirect('home');
     }
 }
