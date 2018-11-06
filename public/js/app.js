@@ -16037,7 +16037,7 @@ var routes = [{
 
 var router = new VueRouter({ mode: 'history', routes: routes });
 
-new Vue(Vue.util.extend({ router: router }, AppLayout)).$mount('#vm');
+new Vue(Vue.util.extend({ router: router }, AppLayout)).$mount('.appContent');
 
 /***/ }),
 /* 16 */

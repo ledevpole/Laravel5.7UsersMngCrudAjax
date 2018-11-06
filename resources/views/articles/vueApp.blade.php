@@ -3,7 +3,7 @@
 
 @section('content')
 
-<div id="vm"></div>
+<div class="appContent"></div>
 
 
 
