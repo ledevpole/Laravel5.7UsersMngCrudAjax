@@ -1,5 +1,35 @@
 # Laravel5.7UsersMngCrudAjax
 
+## A propos de ce projet..
+
+Au début, ce n'était qu'un morceau d'appli fait pour m'entrainer. Le user management marche, avec trois catégories d'utilisateurs.
+
+- Les utilisateurs réguliers
+- des administrateurs qui peuvent visualiser des messages et les utilisateurs réguliers.
+- des supers administrateurs qui administrent tous les utilisateurs (crud).
+
+Ensuite j'ai ajouté des articles en Vue.js, et la possibilité de laisser des messages aux administrateurs.
+
+J'ai rajouté mon CV et la possibilité de le télécharger depuis Google Drive.
+
+J'ai commencé également à creer des seeds pour peupler ma base de donnée à volonté.
+
+-pour l'instant un seul seed, qui crée un super admin, un admin et une cinquantaine de faux comptes avec Faker.
+
+Je vous laisse juger de mon travail, et j'apprécie les retours.
+Merci à vous de m'avoir lu et bonne visite.
+
+
+
+
+
+
+
+
+
+J'aime Laravel je vous laisse en apprendre un peu plus, attention c'est en angalis.
+
+
 
 
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
