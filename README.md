@@ -23,11 +23,7 @@ Merci à vous de m'avoir lu et bonne visite.
 
 
 
-
-
-
-
-J'aime Laravel je vous laisse en apprendre un peu plus, attention c'est en angalis.
+J'aime Laravel je vous laisse en apprendre un peu plus, attention c'est en anglais.
 
 
 
