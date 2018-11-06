@@ -14,7 +14,7 @@ J'ai rajouté mon CV et la possibilité de le télécharger depuis Google Drive.
 
 J'ai commencé également à creer des seeds pour peupler ma base de donnée à volonté.
 
--pour l'instant un seul seed, qui crée un super admin, un admin et une cinquantaine de faux comptes avec Faker.
+- pour l'instant un seul seed, qui crée un super admin, un admin et une cinquantaine de faux comptes avec Faker.
 
 Je vous laisse juger de mon travail, et j'apprécie les retours.
 Merci à vous de m'avoir lu et bonne visite.
