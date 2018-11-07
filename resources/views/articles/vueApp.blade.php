@@ -5,7 +5,4 @@
 
 <div class="appContent"></div>
 
-
-
-
 @endsection

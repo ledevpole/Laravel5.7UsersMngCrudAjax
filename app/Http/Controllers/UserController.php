@@ -26,7 +26,7 @@ class UserController extends Controller
 
             case 1:
                 $users['users'] = \App\User::all();
-                if ($request->user()->isGodBlessed) {
+                if ($request->user()->isGodBlessed != 0) {
                     return view('users.godlook',$users);
                 }
             return view('adminhome',$users);
