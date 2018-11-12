@@ -17,7 +17,7 @@ Route::get('/', function () {
 	});
 
 
-Auth::routes();
+
 
 Route::group(['middleware' => ['web', 'auth']], function() {
 	
@@ -37,3 +37,4 @@ Route::group(['middleware' => ['web', 'auth']], function() {
 Route::get('messages/create','MessageController@create')->name('messages.create');
 Route::post('messages','MessageController@store');
 
+Auth::routes();

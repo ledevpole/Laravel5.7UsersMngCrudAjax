@@ -21,7 +21,7 @@ class UserController extends Controller
 
         switch ($request->user()->admin ) {
             case 0:
-                return view('home');
+                return view('home')->with('success','Vous êtes bien connecté!');
                 break;
 
             case 1:
