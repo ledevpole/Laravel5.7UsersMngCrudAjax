@@ -53050,7 +53050,7 @@ var render = function() {
                 {
                   attrs: {
                     href:
-                      "https://www.linkedin.com/in/mathias-tardiff-en-recherche-active-0ab97689/",
+                      "https://www.linkedin.com/in/mathias-tardiff-0ab97689/",
                     target: "_blank"
                   }
                 },

@@ -21,12 +21,12 @@ class UserController extends Controller
 
         switch ($request->user()->admin ) {
             case 0:
-                return view('home');
+                return view('home')->with('success','Vous êtes bien connecté!');
                 break;
 
             case 1:
                 $users['users'] = \App\User::all();
-                if ($request->user()->isGodBlessed) {
+                if ($request->user()->isGodBlessed != 0) {
                     return view('users.godlook',$users);
                 }
             return view('adminhome',$users);

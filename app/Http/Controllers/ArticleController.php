@@ -15,7 +15,7 @@ class ArticleController extends Controller
      */
  
     public function home()
-    {
+    { 
         return view('articles.vueApp');
     }
 

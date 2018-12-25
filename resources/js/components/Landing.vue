@@ -26,7 +26,7 @@
            <ul class="list-inline list-social-icons mb-0">
             
             <li class="list-inline-item">
-              <a href="https://www.linkedin.com/in/mathias-tardiff-en-recherche-active-0ab97689/" target="_blank">
+              <a href="https://www.linkedin.com/in/mathias-tardiff-0ab97689/" target="_blank">
                 <font-awesome-icon :icon="[ 'fab', 'linkedin' ]" size="4x" />
               </a>
             </li>
